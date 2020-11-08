@@ -1,0 +1,43 @@
+<!-- <app-home-advertisers> -->
+	<H1>Advertisers page</H1>
+
+	<advertiser-popup></advertiser-popup>
+	<advertiser-detail
+		[advertiser]="focusedAdvertiser"
+		(clickBack)="detailAdvertisers($event)" 
+		*ngIf="detailAdvertisersOn">
+	</advertiser-detail>
+
+	<ng-container *ngIf="!detailAdvertisersOn">
+		<button mat-raised-button
+			*ngIf="canCreate"
+			(click)="addNewAdvertiser()"
+			mat-button 
+			color="primary" 
+			class="addadvertiser">
+			Add advertiser
+		</button>
+
+		<section class="advertisers-table">
+			<div class="advertisers-table_header">
+				<span class="header-{{columnName}}" *ngFor="let columnName of displayedColumns">{{columnName}}</span>
+			</div>
+			<div class="advertisers-table_body">
+				<div class="line-advertiser" *ngFor="let advertiser of advertisers">
+					<span>{{advertiser.id}}</span>
+					<span>{{advertiser.company}}</span>
+					<span>{{advertiser.manager}}</span>
+					<span>{{advertiser.status}}</span>
+					<span *ngIf="canEdit">
+						<button mat-raised-button mat-button (click)="editAdvertisers(advertiser)" color="primary">Edit</button>
+					</span>
+					<span>
+						<button mat-raised-button mat-button (click)="detailAdvertisers(advertiser)" color="primary">Detail</button>
+					</span>
+				</div>
+			</div>
+		</section>
+	</ng-container>
+	
+
+<!-- </app-home-advertisers> -->

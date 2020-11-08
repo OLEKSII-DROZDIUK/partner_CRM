@@ -1,0 +1,31 @@
+<!-- <app-home> -->
+	<header>
+		<mat-selection-list   id="headerList"
+			[multiple]="false">
+			<div *ngFor="let itemLink of menuList;let i=index">
+				<mat-list-option 
+					*ngIf="menuListShow[i]"
+					[value]="itemLink"
+					(click)="onClickMenu(itemLink)">
+					{{itemLink}}
+				</mat-list-option>
+			</div>
+		  </mat-selection-list>
+		  <button
+		  mat-raised-button
+		  mat-button 
+		  color="primary" 
+		  (click)="logout()"
+		  >Logout</button>
+	</header>
+
+	<section class="home-wrapper">
+	
+		<app-home-users *ngIf="selectedMenu == 'users'"></app-home-users>
+		<app-home-advertisers *ngIf="selectedMenu == 'advertisers'"></app-home-advertisers>
+		<app-home-offers *ngIf="selectedMenu == 'offers'"></app-home-offers>
+		<app-home-affiliates *ngIf="selectedMenu == 'affiliates'"></app-home-affiliates>
+	</section>
+
+
+<!-- </app-home> -->

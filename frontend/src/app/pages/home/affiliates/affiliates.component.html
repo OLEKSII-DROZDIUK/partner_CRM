@@ -1,0 +1,43 @@
+<!-- <app-home-affiliates> -->
+	<H1>Affiliates page</H1>
+	<affiliate-popup></affiliate-popup>
+
+	<affiliate-detail
+		[affiliate]="focusedAffiliate"
+		(clickBack)="detailAffiliate($event)" 
+		*ngIf="detailAffiliateOn">
+	</affiliate-detail>
+
+	<ng-container *ngIf="!detailAffiliateOn">
+		<button mat-raised-button
+			*ngIf="canCreate"
+			(click)="addNewAffiliates()"
+			mat-button 
+			color="primary" 
+			class="addadvertiser">
+			Add affiliates
+		</button>
+
+		<section class="affiliates-table">
+			<div class="affiliates-table_header">
+				<span class="header-{{columnName}}" *ngFor="let columnName of displayedColumns">{{columnName}}</span>
+			</div>
+			<div class="affiliates-table_body">
+				<div class="line-affiliate" *ngFor="let affiliate of affiliates">
+					<span>{{affiliate.id}}</span>
+					<span>{{affiliate.company}}</span>
+					<span>{{affiliate.manager}}</span>
+					<span>{{affiliate.status}}</span>
+					<span *ngIf="canEdit">
+						<button mat-raised-button mat-button (click)="editAffiliates(affiliate)" color="primary">Edit</button>
+					</span>
+					<span>
+						<button mat-raised-button mat-button (click)="detailAffiliate(affiliate)" color="primary">Detail</button>
+					</span>
+				</div>
+			</div>
+		</section>
+
+	</ng-container>
+
+<!-- </app-home-affiliates> -->

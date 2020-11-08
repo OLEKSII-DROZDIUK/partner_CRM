@@ -1,0 +1,71 @@
+ 
+<!-- <affiliate-popup> -->
+    <section class="container" id="popUpForm" >
+
+        <ng-container *ngIf="popupOn">
+            <span class="user-popup_close"></span>
+
+            <ng-container *ngIf="formSend; else formForSubmitTemplate">
+                <div class="phone-popup_success">
+                    <ng-lottie [options]="options"
+                        [width]="250"
+                        [height]="250">
+                    </ng-lottie>
+                </div>
+            </ng-container>
+
+            <ng-template #formForSubmitTemplate>
+                <h2 class="user-popup_title">{{formType + ' affiliate' }}</h2>
+                <span class="user-popup_info">advertiserId: {{currentAffiliate.id}}</span>
+                <span class="user-popup_info" *ngIf="formType === 'edit'">create user: {{currentAffiliate.manager}}</span>
+
+                <form [formGroup]="affiliatePopupForm" class="user-popup_form">
+                    <label for="companyInput" [ngClass]="{'invalid': affiliatePopupForm.controls.companyInput.status === 'INVALID'}">Company required</label>
+                    <input class="form-control"
+                        formControlName="companyInput" 
+                        autocomplete="off" 
+                        matInput
+                        [placeholder]="'company name'"
+                    >
+                    <label for="emailInput" [ngClass]="{'invalid': affiliatePopupForm.controls.emailInput.status === 'INVALID'}">Email required</label>
+                    <input class="form-control"
+                        formControlName="emailInput" 
+                        autocomplete="off" 
+                        matInput
+                        [placeholder]="'email'"
+                    >
+                    <label 
+                        for="nameInput"
+                        [ngClass]="{'invalid': affiliatePopupForm.controls.nameInput.status === 'INVALID'}">Name required</label>
+                    <input class="form-control"
+                        formControlName="nameInput" 
+                        autocomplete="off" 
+                        matInput
+                        type="name"
+                        [placeholder]="'name'"
+                    >
+                    
+                    <div class="form_toggle">
+                        status: 
+                        <div class="form_toggle-item item-1">
+                            <input id="fid-1" type="radio" name="statusInput" value="inactive" formControlName="statusInput">
+                            <label for="fid-1">Inactive</label>
+                        </div>
+                        <div class="form_toggle-item item-2">
+                            <input id="fid-2" type="radio" name="statusInput" value="active" formControlName="statusInput" >
+                            <label for="fid-2">Active</label>
+                        </div>
+                    </div>
+                    
+                    <button class="user-popup_btn"
+                        [ngClass]="{'disabled': !affiliatePopupForm.valid}"
+                        [disabled]="!affiliatePopupForm.valid" 
+                        type="button" 
+                        (click)="submit()">
+                    submit</button>
+                </form>
+            </ng-template>
+        </ng-container>
+    </section>
+
+<!-- </affiliate-popup> -->   

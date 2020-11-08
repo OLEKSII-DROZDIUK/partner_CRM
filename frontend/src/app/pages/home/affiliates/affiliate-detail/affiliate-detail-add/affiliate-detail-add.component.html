@@ -1,0 +1,43 @@
+<!-- <affiliate-detail-add> -->
+    <section class="container" id="addOfer" >
+
+        <ng-container *ngIf="popupOn">
+            <span class="user-popup_close"></span>
+
+            <ng-container *ngIf="formSend; else formForSubmitTemplate">
+                <div class="phone-popup_success">
+                    <ng-lottie [options]="options"
+                        [width]="250"
+                        [height]="250">
+                    </ng-lottie>
+                </div>
+            </ng-container>
+
+            <ng-template #formForSubmitTemplate>
+                <h2 class="user-popup_title">add new offer</h2>
+
+                <form class="user-popup_form">
+
+                    <select [(ngModel)]="selectedOffer"
+                        name='selectoptions'
+                        class="select">
+                        <option 
+                            [value]="item.id"
+                            *ngFor="let item of offersList ;let i = index">
+                            {{item.name}}
+                        </option>
+                    </select>
+
+                    <button 
+                    (click)="addOfferToAffility()"
+                        class="user-popup_btn" 
+                        type="button">
+                            add offer
+                    </button>
+
+                </form>
+            </ng-template>
+        </ng-container>
+    </section>
+
+<!-- </affiliate-detail-add> -->

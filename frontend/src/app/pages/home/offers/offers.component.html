@@ -1,0 +1,40 @@
+<!-- <app-home-offers> -->
+	<H1>Offers page</H1>
+	<offer-popup></offer-popup>
+	<offer-detail
+		[offer]="focusedOffer"
+		(clickBack)="detailOffer($event)" 
+		*ngIf="detailOfferOn">
+	</offer-detail>
+
+	<ng-container *ngIf="!detailOfferOn">
+		<button mat-raised-button
+			*ngIf="canCreate"
+			(click)="addNewOffer()"
+			mat-button 
+			color="primary" 
+			class="addoffer">
+			Add offer
+		</button>
+
+		<section class="offers-table">
+			<div class="offers-table_header">
+				<span class="header-{{columnName}}" *ngFor="let columnName of displayedColumns">{{columnName}}</span>
+			</div>
+			<div class="offers-table_body">
+				<div class="line-offer" *ngFor="let offer of offers">
+					<span>{{offer.id}}</span>
+					<span>{{offer.name}}</span>
+					<span>{{offer.company}}</span>
+					<span>{{offer.status}}</span>
+					<span *ngIf="canEdit">
+						<button mat-raised-button mat-button (click)="editOffer(offer)" color="primary">Edit</button>
+					</span>
+					<span>
+						<button mat-raised-button mat-button (click)="detailOffer(offer)" color="primary">Detail</button>
+					</span>
+				</div>
+			</div>
+		</section>
+	</ng-container>
+<!-- </app-home-offers> -->

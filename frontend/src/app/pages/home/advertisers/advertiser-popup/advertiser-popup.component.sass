@@ -1,0 +1,212 @@
+$color-error: rgba(255, 84, 84, 0.8)
+
+advertiser-popup
+    position: fixed
+    bottom: 0px
+    width: 100%
+    height: 100%
+    min-width: 320px
+    min-height: 300px
+    background-color: rgba(0,0,0,0.5)
+    top: 0px
+    left: 0px
+    z-index: 999
+    display: none
+    &.show
+        display: flex
+        justify-content: center
+        align-items: center
+        overflow: hidden
+        overflow-y: auto
+    .container    
+        background: #3B4461
+        box-shadow: 2px 6px 20px rgba(1, 10, 68, 0.5)
+        border-radius: 6px
+        height: 0px
+        width: 0px
+        position: relative
+        padding: 46px 38px 35px
+        .user-popup_title, .user-popup_info, .userPopupForm, .example-full-width, .user-popup_btn, .user-popup_close
+            opacity: 0
+        &.open
+            .user-popup_title, .user-popup_info, .userPopupForm, .example-full-width, .user-popup_btn, .user-popup_close
+                animation: showElementPopUp 0.1s forwards ease
+                animation-delay: 0.5s
+        @media screen and ( min-width: 601px )
+            &.open
+                animation: animationDescWindow 0.5s forwards ease
+        @media screen and ( max-width: 600px )
+            height: 0px
+            width: 0px
+            padding: 46px 23px 30px 18px
+            &.open
+                animation: animationMobWindow 0.5s forwards ease
+        .user-popup_close
+            align-self: flex-end
+            display: flex
+            position: absolute
+            right: 29px
+            top: 29px
+            background: url("/assets/icon/close.svg") no-repeat center
+            width: 14px
+            height: 14px
+            padding: 5px
+            cursor: pointer
+            @media screen and ( max-width: 900px )
+                right: 6px
+                top: 30px
+            @media screen and ( max-width: 600px )
+                margin-top: 10px
+                right: 12px
+                top: 26px
+        .phone-popup_success
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            text-align: center
+            opacity: 1
+            // lottie-animation-view
+            //     margin-top: 70px
+            //     @media screen and ( max-width: 600px )
+            //         margin-top: 60px
+            .success-title
+                font-family: Roboto
+                font-style: normal
+                font-weight: bold
+                font-size: 24px
+                line-height: 38px
+                color: #FFFFFF
+            .success-description
+                font-family: Roboto
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 26px
+                color: rgba(255, 255, 255, 0.7)
+        .user-popup_title
+            font-family: Roboto
+            font-style: normal
+            font-weight: bold
+            font-size: 24px
+            line-height: 38px
+            // height: 38px
+            color: #FFFFFF
+            @media screen and ( max-width: 600px )
+                font-size: 22px
+                line-height: 26px
+        .user-popup_info
+            padding-top: 10px
+            font-family: Roboto
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 26px
+            display: block
+            align-items: center
+            color: rgba(255, 255, 255, 0.7)
+            @media screen and ( max-width: 600px )
+                font-size: 14px
+                line-height: 20px
+        .user-popup_form
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            position: relative
+            color: rgba(255, 255, 255, 0.87)
+            padding-top: 10px
+            width: 100%
+            // height: 85%
+            // @media screen and ( max-width: 600px )
+            //     padding-top: 24px
+            input
+                padding: 10px 0px
+                margin-bottom: 5px
+                background: #3B4461
+                outline: none
+                outline-offset: 0
+                border: 1px solid rgba(255, 255, 255, 0.7)
+                color: rgba(255, 255, 255, 0.7)
+            label
+                &.invalid
+                    color: rgba(255, 84, 84, 0.8)
+            .password-helper
+                color: #00D8FF
+            .form_toggle
+                display: flex
+                margin: 10px  0px
+                .form_toggle-item 
+                    display: flex
+                    .form_toggle-item input[type=radio]
+                        display: none
+                    .form_toggle-item label 
+                        display: inline-block
+                        padding: 10px 15px 
+                        line-height: 34px    
+                        border-right: none
+                        cursor: pointer
+                        user-select: none   
+            // .form_toggle .item-1 label 
+            //     border-radius: 6px 0 0 6px
+            // .form_toggle .item-2 label
+            //     border-radius: 0 6px 6px 0
+            /* Checked */
+            .form_toggle .item-1 input[type=radio]:checked + label
+                color: #ffc5c5
+            .form_toggle .item-2 input[type=radio]:checked + label
+                color: #bbffbb
+            .form_toggle .item-3 input[type=radio]:checked + label,
+            .form_toggle .item-4 input[type=radio]:checked + label,
+            .form_toggle .item-5 input[type=radio]:checked + label
+                color: #00D8FF
+        .user-popup_btn
+            background-color: #00D8FF
+            color:  #3B4461
+            border: none
+            transition: background-color 100ms
+            width: 224px
+            height: 48px
+            text-transform: uppercase
+            border-radius: 5px
+            font-family: Roboto
+            font-style: normal
+            font-weight: 500
+            font-size: 18px
+            line-height: 28px
+            align-self: center
+            outline: none
+            outline-offset: 0
+            &.disabled
+                background-color: lighten(#00D8FF, 80%)
+                &:hover
+                    cursor: auto
+                    background-color: lighten(#00D8FF, 80%)
+            @media screen and ( max-width: 600px )
+                width: 170px
+            &:hover
+                cursor: pointer
+                background-color: #64E7FF
+
+@keyframes animationMobWindow
+    0%
+        height: 0px
+        width: 0px
+    100%           
+        height: 441px
+        width: 292px
+
+@keyframes animationDescWindow
+    0% 
+        height: 0px
+        width: 0px
+    100% 
+        height: 414px
+        width: 460px
+
+@keyframes showElementPopUp
+    0% 
+        opacity: 0
+    100% 
+        opacity: 1
+
+        

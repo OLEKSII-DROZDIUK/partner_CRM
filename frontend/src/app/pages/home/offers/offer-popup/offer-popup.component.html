@@ -1,0 +1,65 @@
+ 
+<!-- <offer-popup> -->
+    
+    <section class="container" id="popUpForm" >
+
+        <ng-container *ngIf="popupOn">
+            <span class="user-popup_close"></span>
+
+            <ng-container *ngIf="formSend; else formForSubmitTemplate">
+                <div class="phone-popup_success">
+                    <ng-lottie [options]="options"
+                        [width]="250"
+                        [height]="250">
+                    </ng-lottie>
+                </div>
+            </ng-container>
+
+            <ng-template #formForSubmitTemplate>
+                <h2 class="user-popup_title">{{formType + ' offer' }}</h2>
+                <span class="user-popup_info">advertiserId: {{currentOffer.id}}</span>
+
+                <form [formGroup]="offersPopupForm" class="user-popup_form">
+                    <label for="nameInput"
+                        [ngClass]="{'invalid': offersPopupForm.controls.nameInput.status === 'INVALID'}">Name required</label>
+                    <input class="form-control"
+                        formControlName="nameInput" 
+                        autocomplete="off" 
+                        matInput
+                        type="name"
+                        [placeholder]="'name'"
+                    >
+                    <select (change)="changeAdvertiser($event)"
+                        class="select"
+                        formControlName="advertiserSelect">
+                        <option selected="selected" *ngIf="formType === 'create'" disabled>Select advertiser</option>
+                        <option [value]="advertiser.company"
+                            *ngFor="let advertiser of advertisersList;let i = index"
+                        >{{advertiser.company}}</option>
+                      </select>
+                    <span class="password-helper">The advertiser is required</span>
+                    
+                    <div class="form_toggle">
+                        status: 
+                        <div class="form_toggle-item item-1">
+                            <input id="fid-1" type="radio" name="statusInput" value="inactive" formControlName="statusInput">
+                            <label for="fid-1">Inactive</label>
+                        </div>
+                        <div class="form_toggle-item item-2">
+                            <input id="fid-2" type="radio" name="statusInput" value="active" formControlName="statusInput" >
+                            <label for="fid-2">Active</label>
+                        </div>
+                    </div>
+
+                    <button class="user-popup_btn"
+                        [ngClass]="{'disabled': !offersPopupForm.valid}"
+                        [disabled]="!offersPopupForm.valid" 
+                        type="button" 
+                        (click)="submit()">
+                    submit</button>
+                </form>
+            </ng-template>
+        </ng-container>
+    </section>
+
+<!-- </offer-popup> -->   

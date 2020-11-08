@@ -1,0 +1,26 @@
+{
+  "name": "runner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "npm start dev --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "install": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
+    "start": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OLEKSII-DROZDIUK/eWorld.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OLEKSII-DROZDIUK/eWorld/issues"
+  },
+  "homepage": "",
+  "dependencies": {
+    "concurrently": "^4.1.2"
+  }
+}

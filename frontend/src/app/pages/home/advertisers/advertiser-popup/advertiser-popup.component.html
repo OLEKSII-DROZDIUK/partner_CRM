@@ -1,0 +1,91 @@
+ 
+<!-- <advertiser-popup> -->
+    
+    <section class="container" id="popUpForm" >
+
+        <ng-container *ngIf="popupOn">
+            <span class="user-popup_close"></span>
+
+            <ng-container *ngIf="formSend; else formForSubmitTemplate">
+                <div class="phone-popup_success">
+                    <ng-lottie [options]="options"
+                        [width]="250"
+                        [height]="250">
+                    </ng-lottie>
+                    <!-- <h2 class="success-title">{{popupStaticContent[sharedService.language].success.title}}</h2>
+                    <span class="success-description">{{popupStaticContent[sharedService.language].success.desc}}</span> -->
+                </div>
+            </ng-container>
+
+            <ng-template #formForSubmitTemplate>
+                <h2 class="user-popup_title">{{formType + ' advertiser' }}</h2>
+                <span class="user-popup_info">advertiserId: {{currentAdvertiser.id}}</span>
+                <span class="user-popup_info" *ngIf="formType === 'edit'">create user: {{currentAdvertiser.manager}}</span>
+
+                <form [formGroup]="advertiserPopupForm" class="user-popup_form">
+                    <label for="companyInput" [ngClass]="{'invalid': advertiserPopupForm.controls.companyInput.status === 'INVALID'}">Company required</label>
+                    <input class="form-control"
+                        formControlName="companyInput" 
+                        autocomplete="off" 
+                        matInput
+                        [placeholder]="'company name'"
+                    >
+                    <label for="emailInput" [ngClass]="{'invalid': advertiserPopupForm.controls.emailInput.status === 'INVALID'}">Email required</label>
+                    <input class="form-control"
+                        formControlName="emailInput" 
+                        autocomplete="off" 
+                        matInput
+                        [placeholder]="'email'"
+                    >
+                    <label 
+                        for="nameInput"
+                        [ngClass]="{'invalid': advertiserPopupForm.controls.nameInput.status === 'INVALID'}">Name required</label>
+                    <input class="form-control"
+                        formControlName="nameInput" 
+                        autocomplete="off" 
+                        matInput
+                        type="name"
+                        [placeholder]="'name'"
+                    >
+                    <!-- <span class="password-helper" *ngIf="formType === 'edit'">Enter password only if you want to change</span> -->
+                    
+                    <div class="form_toggle">
+                        status: 
+                        <div class="form_toggle-item item-1">
+                            <input id="fid-1" type="radio" name="statusInput" value="inactive" formControlName="statusInput">
+                            <label for="fid-1">Inactive</label>
+                        </div>
+                        <div class="form_toggle-item item-2">
+                            <input id="fid-2" type="radio" name="statusInput" value="active" formControlName="statusInput" >
+                            <label for="fid-2">Active</label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form_toggle">
+                        User role: 
+                        <div class="form_toggle-item item-3">
+                            <input id="fid-3" type="radio" name="roleInput" value="admin" formControlName="roleInput" checked>
+                            <label for="fid-3">admin</label>
+                        </div>
+                        <div class="form_toggle-item item-3">
+                            <input id="fid-4" type="radio" name="roleInput" value="advertiserManager" formControlName="roleInput" >
+                            <label for="fid-4">advertiserManager</label>
+                        </div>
+                        <div class="form_toggle-item item-3">
+                            <input id="fid-5" type="radio" name="roleInput" value="affiliateManager" formControlName="roleInput" >
+                            <label for="fid-5">affiliateManager</label>
+                        </div>
+                    </div> -->
+                    
+                    <button class="user-popup_btn"
+                        [ngClass]="{'disabled': !advertiserPopupForm.valid}"
+                        [disabled]="!advertiserPopupForm.valid" 
+                        type="button" 
+                        (click)="submit()">
+                    submit</button>
+                </form>
+            </ng-template>
+        </ng-container>
+    </section>
+
+<!-- </advertiser-popup> -->   

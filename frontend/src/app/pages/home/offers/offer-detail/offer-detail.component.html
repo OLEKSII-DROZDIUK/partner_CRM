@@ -1,0 +1,55 @@
+ 
+<!-- <offer-detail> -->
+    <button mat-raised-button
+        (click)="clickBackChild()"
+        mat-button 
+        color="primary" 
+        class="back-btn">
+        back to Offers
+    </button>
+
+    <section class="more">
+        <div class="more-detail">
+            <span class="item"><b>Id: </b>{{offer.id}}</span>
+            <span class="item"><b>Name: </b> {{offer.name}}</span>
+            <span class="item"><b>advertiser id: </b> {{offer.advertiserId}}</span>
+            <span class="item"><b>Company: </b> {{offer.company}}</span>
+            <span class="item"><b>Payout: </b> {{offer.payout}}</span>
+            <div class="item">
+                <b>AllowedCountries: </b>
+                <span class="item-list"  
+                *ngFor="let ISO of offer.allowedCountries">{{ISO}}</span>
+            </div>
+            <span class="item"><b>Status: </b>{{offer.status}}</span>
+        </div>
+        <h1>Affiliates info</h1>
+        <button mat-raised-button
+            (click)="addNewAffiliate()"
+            mat-button 
+            color="primary" 
+            class="add-btn">
+            Add new Affiliate
+        </button>
+        <div class="table">
+            <div class="table_header">
+                <span class="header-{{columnName}}" *ngFor="let columnName of displayedColumns">{{columnName}}</span>
+            </div>
+            <div class="table_body">
+                <div class="line-offer" *ngFor="let affiliate of arrAffiliates">
+                    <span>{{affiliate.id}}</span>
+                    <span>{{affiliate.company}}</span>
+                    <span>{{affiliate.status}}</span>
+                    <span >
+                        <button mat-raised-button mat-button (click)="deleteAffiliate(affiliate)" color="primary">Delete Affiliate</button>
+                    </span>
+                    <span >
+                        <button mat-raised-button mat-button (click)="goToAffiliate(affiliate)" color="primary">Go to Affiliate</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <offer-detail-add (addNewAffiliate)="afiliateAded($event)" [selectedOfferId]="offer.id"></offer-detail-add>
+
+<!-- </offer-detail> -->   

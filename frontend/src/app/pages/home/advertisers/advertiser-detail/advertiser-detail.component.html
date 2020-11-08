@@ -1,0 +1,38 @@
+ <!-- <advertiser-detail> -->
+     
+    <button mat-raised-button
+        (click)="clickBackChild()"
+        mat-button 
+        color="primary" 
+        class="back-btn">
+        back to advertisers
+    </button>
+
+    <section class="more">
+        <div class="more-detail">
+            <span class="item"><b>Id: </b>{{advertiser.id}}</span>
+            <span class="item"><b>Name: </b> {{advertiser.name}}</span>
+            <span class="item"><b>Email: </b> {{advertiser.email}}</span>
+            <span class="item"><b>Company: </b> {{advertiser.company}}</span>
+            <span class="item"><b>Manager: </b> {{advertiser.manager}}</span>
+            <span class="item"><b>Status: </b>{{advertiser.status}}</span>
+        </div>
+        <h1>Offers info</h1>
+        <div class="table">
+            <div class="table_header">
+                <span class="header-{{columnName}}" *ngFor="let columnName of displayedColumns">{{columnName}}</span>
+            </div>
+            <div class="table_body">
+                <div class="line-offer" *ngFor="let offer of offers">
+                    <span>{{offer.id}}</span>
+                    <span>{{offer.name}}</span>
+                    <span>{{offer.status}}</span>
+                    <span >
+                        <button mat-raised-button mat-button (click)="goToOffer(offer)" color="primary">Go to offer</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- </advertiser-detail> -->   
