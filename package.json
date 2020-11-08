@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OLEKSII-DROZDIUK/eWorld.git"
+    "url": "git+https://github.com/OLEKSII-DROZDIUK/partner_CRM.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OLEKSII-DROZDIUK/eWorld/issues"
+    "url": "https://github.com/OLEKSII-DROZDIUK/partner_CRM.git"
   },
   "homepage": "",
   "dependencies": {
