@@ -33,6 +33,10 @@ import IOffers from '@app/interfaces/Offers';
         this.initApiData()
     };
 
+    public ngAfterViewInit() {
+        this.globSvc.globalDetailHelperRout({data:  [], pageName:''})
+    }
+
     //////////////////////////////////////////life cycle off
     public initApiData() {
         this.apiSvc.getOffersByAffiliateId(this.affiliate.id)

@@ -28,8 +28,8 @@
 					<span>{{advertiser.company}}</span>
 					<span>{{advertiser.manager}}</span>
 					<span>{{advertiser.status}}</span>
-					<span *ngIf="canEdit">
-						<button mat-raised-button mat-button (click)="editAdvertisers(advertiser)" color="primary">Edit</button>
+					<span >
+						<button *ngIf="canEdit" mat-raised-button mat-button (click)="editAdvertisers(advertiser)" color="primary">Edit</button>
 					</span>
 					<span>
 						<button mat-raised-button mat-button (click)="detailAdvertisers(advertiser)" color="primary">Detail</button>

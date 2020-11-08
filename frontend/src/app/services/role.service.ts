@@ -1,7 +1,5 @@
 
 import { Injectable, Inject} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 //DATA
@@ -15,8 +13,7 @@ export class RoleService {
 
     public activeHomeCategorySubject:BehaviorSubject<string> = new BehaviorSubject('');
 
-	constructor(@Inject(DOCUMENT) private document: Document,
-        public router: Router) {
+	constructor() {
         this.allRoleRules = GLOBAL_ROLES;
     };
     

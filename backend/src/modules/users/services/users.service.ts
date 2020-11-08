@@ -59,14 +59,11 @@ export class UsersService {
         if(users.length === 0){
           this.usersRepository.save(userAdmin)
           .then(admin => {
-            console.log("SUPER ADMIN DATA", admin, 
-            'password: superadmin')
+            console.log('\x1b[36m%s\x1b[0m', "SUPER ADMIN INFO IN Users table:", admin);
+            console.log('\x1b[36m%s\x1b[0m', 'Password: superadmin');
           })
         }
       })
-      // this.usersRepository.save({
-
-      // })
   }
 
 }

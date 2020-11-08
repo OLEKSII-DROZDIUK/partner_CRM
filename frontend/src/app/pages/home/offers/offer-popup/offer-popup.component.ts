@@ -68,7 +68,6 @@ import IAdvertiser from '@app/interfaces/Advertiser';
                         this.openPopUp();
                     } else {
                         this.offersPopupForm.controls.advertiserSelect.setValue("Select advertiser")
-                        // if(this.advertisersList.length> 0 ) this.offersPopupForm.controls["advertiserSelect"].setValidators([Validators.required]);
                         this.openPopUp()
                     }
                 }) 
@@ -78,10 +77,6 @@ import IAdvertiser from '@app/interfaces/Advertiser';
             });
         });
     };
-
-    public changeAdvertiser(event:any) {
-        console.log(event.target.value)
-    }
 
     private openPopUp() {
         this.document.querySelector('offer-popup').classList.add('show');

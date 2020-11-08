@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 	public error = '';
 	
 	public loginForm = new FormGroup({
-		loginInput: new FormControl('superadmin', Validators.required),
-		passwordInput: new FormControl('superadmin', Validators.required),
+		loginInput: new FormControl('', Validators.required),
+		passwordInput: new FormControl('', Validators.required),
 	})
 
     constructor(

@@ -35,7 +35,6 @@ export class AdvertisersComponent implements OnInit {
 	};
 
 	public ngOnInit() {	
-		// console.log("Ruls:",this.canCreate, this.canEdit)
 		this.subsDataPopUp = this.globSvc.advertiserPopUpFormSendSubject.subscribe(bool => {
 			if(bool) this.getAdvertisersData()
 		})

@@ -1,16 +1,17 @@
 #Partner CRM
 
 **Need:
-Angular CLI: 10.0.0
-Node: 12.18.1.
+Angular CLI: 10.0.0+
+Node: 12 +
 PostgreSQL  13**
 
 QUICK START in local machine
 -----------
 1) In main folder run command "npm install" , they download concurrently pakage in main folder and run "install script" in two folder ./backend and ./front end. This may take some time - see the console.
 2) When all dependencies are installed run "npm run start" in main folder, you run backend server and up Angular app.
+3) If nestjs is successfully launched, superadmin is created in the Users table, you can see detailed information about the login and password in the console. *The user is only created when the table is empty.*
 
-PS:  If you get errors when running commands, run the install and run commands manually
+*PS: If you get errors when running commands, run the install and run commands manually*
 
 ### Package in front(Angular): 
 ```

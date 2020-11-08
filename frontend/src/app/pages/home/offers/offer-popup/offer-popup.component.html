@@ -29,7 +29,7 @@
                         type="name"
                         [placeholder]="'name'"
                     >
-                    <select (change)="changeAdvertiser($event)"
+                    <select
                         class="select"
                         formControlName="advertiserSelect">
                         <option selected="selected" *ngIf="formType === 'create'" disabled>Select advertiser</option>

@@ -30,6 +30,11 @@ import IOffers from '@app/interfaces/Offers';
     public ngOnInit() {
         this.initApiData();
     };
+
+
+    public ngAfterViewInit()  {
+        this.globSvc.globalDetailHelperRout({data:  [], pageName:''})
+    }
     //////////////////////////////////////////life cycle off
 
     public initApiData(){

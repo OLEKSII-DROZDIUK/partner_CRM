@@ -27,8 +27,8 @@
 					<span>{{offer.name}}</span>
 					<span>{{offer.company}}</span>
 					<span>{{offer.status}}</span>
-					<span *ngIf="canEdit">
-						<button mat-raised-button mat-button (click)="editOffer(offer)" color="primary">Edit</button>
+					<span >
+						<button *ngIf="canEdit" mat-raised-button mat-button (click)="editOffer(offer)" color="primary">Edit</button>
 					</span>
 					<span>
 						<button mat-raised-button mat-button (click)="detailOffer(offer)" color="primary">Detail</button>

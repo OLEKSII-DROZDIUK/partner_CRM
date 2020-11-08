@@ -20,11 +20,17 @@
 	</header>
 
 	<section class="home-wrapper">
-	
+		<ng-container *ngIf="!selectedMenu">
+			<h1 class="title">Home page</h1>
+			<span class="description">Select menu category for work</span>
+		</ng-container>
+		
 		<app-home-users *ngIf="selectedMenu == 'users'"></app-home-users>
 		<app-home-advertisers *ngIf="selectedMenu == 'advertisers'"></app-home-advertisers>
 		<app-home-offers *ngIf="selectedMenu == 'offers'"></app-home-offers>
 		<app-home-affiliates *ngIf="selectedMenu == 'affiliates'"></app-home-affiliates>
+
+
 	</section>
 
 

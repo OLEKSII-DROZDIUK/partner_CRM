@@ -32,8 +32,8 @@ export class AffiliatesComponent implements OnInit {
 		public rService: RoleService,
 		public cdr: ChangeDetectorRef,) {
 		this.cdr.detach()
-		this.canCreate =  this.rService.checkRoleRightForAction('offers','create');
-		this.canEdit = this.rService.checkRoleRightForAction('offers','edit')
+		this.canCreate =  this.rService.checkRoleRightForAction('affiliates','create');
+		this.canEdit = this.rService.checkRoleRightForAction('affiliates','edit')
 
 	};
 

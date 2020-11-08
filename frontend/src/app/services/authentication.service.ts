@@ -1,10 +1,11 @@
-﻿import { ComponentFactoryResolver, Injectable } from '@angular/core';
+﻿import {  Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -12,6 +13,7 @@ export class AuthenticationService {
     public token: Observable<string>;
 
     constructor(
+        @Inject(DOCUMENT) private document: Document,
         private router: Router,
         private http: HttpClient
     ) {
@@ -41,5 +43,7 @@ export class AuthenticationService {
         localStorage.removeItem('accessToken');
         this.tokenSubject.next(null);
         this.router.navigate(['/login']);
+        window.location.reload();
+        // this.routerwindow.location.href = 'HomeScreen.html'
     }
 }

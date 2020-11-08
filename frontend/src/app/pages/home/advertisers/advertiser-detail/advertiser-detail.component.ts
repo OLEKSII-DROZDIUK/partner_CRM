@@ -1,6 +1,5 @@
 import { Component, Inject, ViewEncapsulation, ChangeDetectionStrategy,
-    ChangeDetectorRef, PLATFORM_ID, OnInit, OnDestroy,  Input,Output, EventEmitter } from "@angular/core";
-import { isPlatformBrowser, DOCUMENT } from "@angular/common";
+    ChangeDetectorRef, OnInit, Input,Output, EventEmitter } from "@angular/core";
 import { Subscription } from "rxjs";
 // services
 import { GlobalService } from '@app/services/global.service';
@@ -17,22 +16,18 @@ import IOffers from '@app/interfaces/Offers';
     changeDetection: ChangeDetectionStrategy.Default,
     encapsulation : ViewEncapsulation.None
   })
-  export class AdvertiserDetailComponent implements OnInit, OnDestroy {
+  export class AdvertiserDetailComponent implements OnInit {
     @Output() clickBack: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Input() advertiser:IAdvertiser;
 
-    private isBrowser: boolean;
     public currentAdvertiser: IAdvertiser;
     public offers: IOffers[];
     private subsDataPopUp: Subscription = new Subscription();
     public displayedColumns: string[] = ['id', 'name', 'status','details'];
 
-    constructor(@Inject(PLATFORM_ID)   private platformId: Object,
-            @Inject(DOCUMENT) private document: Document,
-            private cdRef: ChangeDetectorRef,
+    constructor(private cdRef: ChangeDetectorRef,
             private apiSvc: ApiService,
             private globSvc: GlobalService,) {
-            this.isBrowser = isPlatformBrowser(platformId);
         };
     
     public ngOnInit() {
@@ -42,14 +37,6 @@ import IOffers from '@app/interfaces/Offers';
                 this.cdRef.detectChanges();
             })
 
-    };
-
-    public ngAfterViewInit() {
-        
-    };
-
-    public ngOnDestroy() {
-        
     };
 
     //////////////////////////////////////////life cycle off

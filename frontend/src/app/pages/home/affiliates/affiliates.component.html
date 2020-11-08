@@ -28,8 +28,8 @@
 					<span>{{affiliate.company}}</span>
 					<span>{{affiliate.manager}}</span>
 					<span>{{affiliate.status}}</span>
-					<span *ngIf="canEdit">
-						<button mat-raised-button mat-button (click)="editAffiliates(affiliate)" color="primary">Edit</button>
+					<span >
+						<button *ngIf="canEdit" mat-raised-button mat-button (click)="editAffiliates(affiliate)" color="primary">Edit</button>
 					</span>
 					<span>
 						<button mat-raised-button mat-button (click)="detailAffiliate(affiliate)" color="primary">Detail</button>

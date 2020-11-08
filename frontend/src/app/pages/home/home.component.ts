@@ -37,11 +37,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.subsDetailData = this.globSvc.goToDetailPageSubject
 			.subscribe(newData => {
 				if(newData.pageName  !=  "") this.selectedMenu = newData.pageName;
-				
 				this.menuClassHelper()
 			})
 
-		this.cdr.detectChanges();
+			console.log(this.selectedMenu)
 	};
 
 	public ngOnDestroy()  {
@@ -51,19 +50,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public onClickMenu (select: string) {
 		this.selectedMenu = select.toLowerCase();
 		this.rService.activeHomeCategorySubject.next(this.selectedMenu)
+		this.menuClassHelper()
 		this.cdr.detectChanges();
 	};
 
 	public menuClassHelper() {
 		const menu = this.document.getElementById('headerList');
-		const  menuArr = menu.querySelectorAll('.mat-list-item')
-		menu.querySelector('.mat-list-single-selected-option').classList.remove('mat-list-single-selected-option'); //del current classactive
-		const indexMenu  = this.menuList.findIndex(item =>  item.toLowerCase() === this.selectedMenu)
-		menuArr[indexMenu].classList.add('mat-list-single-selected-option')
+		const menuArr = menu.querySelectorAll('.mat-list-item')
+
+		if(menu.querySelector('.mat-list-single-selected-option')) {
+			menu.querySelector('.mat-list-single-selected-option').classList.remove('mat-list-single-selected-option'); //del current classactive
+			const indexMenu  = this.menuList.findIndex(item =>  item.toLowerCase() === this.selectedMenu)
+			menuArr[indexMenu].classList.add('mat-list-single-selected-option')
+		}
 		this.cdr.detectChanges();
 	};
 
 	public logout()  {
         this.authSvc.logout()
-    }
+    };
 };
