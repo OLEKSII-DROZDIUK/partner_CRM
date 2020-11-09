@@ -1,4 +1,4 @@
-import { Body, Controller, UseGuards, Get, Param, Post, Request, Put, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
 import { AffiliatesGuard } from '../../../guards/affiliates.guards';
 import { Affiliates } from '../entities/affiliates.entity';
@@ -14,15 +14,14 @@ export class AffiliatesController {
   }
 
     @Get('/all')
-      async getAllAffiliates(@Request() req): Promise<any | null> {
+      async getAllAffiliates(): Promise<any | null> {
         return await this.affiliatesService.editAffiliatesArrForUI()
       }
 
     @UseGuards(AffiliatesGuard)
     @Post('/create')
       async createAdvertiser(@Body() body: any): Promise<Affiliates> {
-      const {id, company, managerId, email, name, status } = body.affiliate;
-
+      const { id, company, managerId, email, name, status } = body.affiliate;
       const newAffiliate= new Affiliates ();
           newAffiliate.id = id;
           newAffiliate.name = name;
@@ -32,20 +31,20 @@ export class AffiliatesController {
           newAffiliate.status = status;
         return await this.affiliatesRepository.save(newAffiliate)
       }
-      
-      @Put('/edit')
-      @UseGuards(AffiliatesGuard)
-      async EditAdvertiser(@Body() body: any): Promise<Affiliates> {
-      const {id } = body.affiliate;
-      const newAffiliateData = await this.affiliatesService.affiliatesHelperDataGenerator(body.affiliate)
-      return await this.affiliatesRepository
-        .createQueryBuilder()
-        .update(Affiliates)
-        .set(newAffiliateData)
-        .where({id: id})
-        .execute()
-        .then(result => {
-          throw new HttpException('Affiliate edit', HttpStatus.OK);
-        })
+
+    @UseGuards(AffiliatesGuard)
+    @Put('/edit')
+    async EditAdvertiser(@Body() body: any): Promise<Affiliates> {
+    const { id } = body.affiliate;
+    const newAffiliateData = await this.affiliatesService.affiliatesHelperDataGenerator(body.affiliate)
+    return await this.affiliatesRepository
+      .createQueryBuilder()
+      .update(Affiliates)
+      .set(newAffiliateData)
+      .where({id: id})
+      .execute()
+      .then(result => {
+        throw new HttpException('Affiliate edit', HttpStatus.OK);
+      })
     }
 }

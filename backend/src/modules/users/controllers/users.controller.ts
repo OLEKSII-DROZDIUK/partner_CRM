@@ -1,10 +1,8 @@
-import { Body, Controller, UseGuards, Get, Param, Post, Request, Put, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
 import { User } from '../entities/users.entity';
 import { UsersService } from '../services/users.service';
-
 import { AdminGuard } from '../../../guards/admin.guards';
-
 
 @Controller('users')
 export class UsersController {
@@ -19,13 +17,8 @@ export class UsersController {
 
   @Get('/all')
   @UseGuards(AdminGuard)
-    async getAllUsers(@Request() req): Promise<User[] | null> {
+    async getAllUsers(): Promise<User[]> {
       return await this.usersRepository.find()
-    }
-
-  @Get(':id')
-    async getOne(@Param('id') login: string): Promise<User> {
-      return await this.usersRepository.findOne(login);
     }
   
   @Post('/create')

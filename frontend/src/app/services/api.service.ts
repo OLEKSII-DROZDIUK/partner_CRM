@@ -43,7 +43,7 @@ export class ApiService {
     }
 
     public getOffersForAdvertiser(id: string) {
-      return this.http.post(`${environment.apiUrl}/advertisers/offers`, {id});
+      return this.http.get(`${environment.apiUrl}/advertisers/offers/` + id);
     }
     
     public editAdvertiser(advertiser:IAdvertiser) {

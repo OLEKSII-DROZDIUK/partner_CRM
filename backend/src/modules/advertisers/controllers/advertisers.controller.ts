@@ -33,11 +33,16 @@ export class AdvertisersController {
       return await this.advertisersRepository.save(newAdvertiser)
     }
     
-    @Post('/offers')
-    async getOffersList(@Body() body: any): Promise<any> {
-      return await this.advertisersService.getOffersList(body.id)
+    @Get('/offers/:offerId')
+    async getOffersList(@Param('offerId') offerId: string): Promise<any> {
+      try {
+        return await this.advertisersService.getOffersList(offerId)
+      } catch ($e) {
+        return [];
+      }
     }
     
+    @UseGuards(AdvertisersGuard)
     @Put('/edit')
     async EditAdvertiser(@Body() body: any): Promise<Advertisers> {
     const {id} = body.advertiser;

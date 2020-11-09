@@ -1,4 +1,4 @@
-import { Body, Controller, UseGuards, Get, Param, Post, Request, Put, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
 import { AdvertisersGuard } from '../../../guards/advertisers.guards ';
 import { Offers } from '../entities/offers.entity';
@@ -14,7 +14,7 @@ export class OffersController {
   }
 
     @Get('/all')
-      async getAllOffers(@Request() req): Promise<any | null> {
+      async getAllOffers(): Promise<any | null> {
         return await this.offerService.editOfferArrForUI()
       }
 
@@ -25,15 +25,15 @@ export class OffersController {
       const newOffer = new Offers ();
           newOffer.id = id;
           newOffer.advertiserId = advertiserId;
-          newOffer.allowedCountries = [];
-          newOffer.payout = 0.00;
+          newOffer.allowedCountries = [];//не указаны никакие взаимодействия с этим полем, ставлю базовое значение
+          newOffer.payout = 0.00; //не указаны никакие взаимодействия с этим полем, ставлю базовое значение
           newOffer.name = name;
           newOffer.status = status;
         return await this.offersRepository.save(newOffer)
       }
       
-      @Put('/edit')
       @UseGuards(AdvertisersGuard)
+      @Put('/edit')
       async EditAdvertiser(@Body() body: any): Promise<Offers> {
       const {id } = body.offer;
       const newOfferData = await this.offerService.offerHelperDataGenerator(body.offer)

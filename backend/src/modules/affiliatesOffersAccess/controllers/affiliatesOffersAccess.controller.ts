@@ -14,23 +14,22 @@ export class AffiliatesOffersAccessController {
     this.affilOfferRepository = this.connection.getRepository(AffiliatesOffersAccess)
   }
 
-    @Get('/get-offers/:affiliateId')   //get list offers by id affiiate
-    async getOffersById(@Param('affiliateId') affiliateId: string): Promise<Offers[] | []> {
-      try {
-        return await this.affiliatesService.filterForAffiliateId(affiliateId)
-      } catch ($e) {
-        return [];
-      }
-
+  @Get('/get-offers/:affiliateId')   //get list offers by id affiiate
+  async getOffersById(@Param('affiliateId') affiliateId: string): Promise<Offers[] | []> {
+    try {
+      return await this.affiliatesService.filterForAffiliateId(affiliateId)
+    } catch ($e) {
+      return [];
     }
+  }
 
-    @Get('/get-affiliates/:offerId')  //get list off affiliates by id offer
-    async getAffiliatesById(@Param('offerId') offerId: string): Promise<Affiliates[] | []> {
-      try {
-        return await this.affiliatesService.filterForOfferId(offerId)
-      } catch ($e) {
-        return [];
-      }
+  @Get('/get-affiliates/:offerId')  //get list off affiliates by id offer
+  async getAffiliatesById(@Param('offerId') offerId: string): Promise<Affiliates[] | []> {
+    try {
+      return await this.affiliatesService.filterForOfferId(offerId)
+    } catch ($e) {
+      return [];
+    }
   }
   
   @Get('/all')
