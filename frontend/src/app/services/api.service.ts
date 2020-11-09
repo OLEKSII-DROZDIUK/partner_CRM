@@ -85,12 +85,12 @@ export class ApiService {
       return this.http.post(`${environment.apiUrl}/affilite-offer-access/create`, {offerId, affiliateId, status:  'active'});
     }
 
-    public getOffersByAffiliateId(id: string) {
-      return this.http.post(`${environment.apiUrl}/affilite-offer-access/get-offers`, {id});
+    public getOffersByAffiliateId(affiliateId: string) {
+      return this.http.get(`${environment.apiUrl}/affilite-offer-access/get-offers/` + affiliateId);
     }
 
-    public getAffiliateByOfferId(id: string) {
-      return this.http.post(`${environment.apiUrl}/affilite-offer-access/get-affiliates`, {id});
+    public getAffiliateByOfferId(offerId: string) {
+      return this.http.get(`${environment.apiUrl}/affilite-offer-access/get-affiliates/` + offerId);
     }
 
     public removeLinkingOfAffiliate(offerId: string, affiliateId: string) {

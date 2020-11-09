@@ -39,8 +39,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 				if(newData.pageName  !=  "") this.selectedMenu = newData.pageName;
 				this.menuClassHelper()
 			})
-
-			console.log(this.selectedMenu)
 	};
 
 	public ngOnDestroy()  {

@@ -28,6 +28,7 @@ import IOffers from '@app/interfaces/Offers';
         };
     
     public ngOnInit() {
+        // console.log("offer: ",this.offer)
         this.initApiData();
     };
 

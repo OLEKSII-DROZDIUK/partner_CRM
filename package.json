@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "backend": "npm start dev --prefix backend",
+    "backend": "npm run start:dev --prefix backend",
     "frontend": "npm start --prefix frontend",
     "install": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
     "start": "concurrently \"npm run frontend\" \"npm run backend\""

@@ -1,14 +1,4 @@
-//hammer
-import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import * as hammer from 'hammerjs';
-
-export class MyHammerConfig extends HammerGestureConfig {
-	overrides = <any>{
-	  swipe: { direction: hammer.DIRECTION_HORIZONTAL },
-	  pinch: { enable: false },
-	  rotate: { enable: false }
-	};
-}
+import { BrowserModule, HammerModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,9 +11,9 @@ import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
 import { ErrorInterceptor }  from './helpers/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
+import { MyHammerConfig } from './helpers/hammer.helper';
 //component
 import { LoginComponent } from './pages/login/login.component';
-
 
 @NgModule({
   declarations: [
@@ -47,9 +37,6 @@ import { LoginComponent } from './pages/login/login.component';
 			provide: HAMMER_GESTURE_CONFIG,
 			useClass: MyHammerConfig
 		},
-
-    // provider used to create fake backend
-    // fakeBackendProvider
 	],
   bootstrap: [
 		AppComponent,

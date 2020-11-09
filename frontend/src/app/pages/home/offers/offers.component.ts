@@ -20,7 +20,7 @@ export class OffersComponent implements OnInit,  OnDestroy {
 
 	public offers: IOffers[];
 	public offersLoad: boolean = false;
-	public displayedColumns: string[] = ['id', 'name', 'advertiser', 'status', 'edit', 'details'];
+	public displayedColumns: string[] = ['id', 'name', 'advertiser company', 'status', 'edit', 'details'];
 	private subsDataPopUp: Subscription = new Subscription();
 	private subsDetailRout: Subscription = new Subscription();
 	public detailOfferOn:boolean  = false;

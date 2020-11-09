@@ -39,18 +39,17 @@ export class AdvertisersController {
     }
     
     @Put('/edit')
-    // @UseGuards(AdvertisersGuard)
     async EditAdvertiser(@Body() body: any): Promise<Advertisers> {
     const {id} = body.advertiser;
     const newAdvertiserData = await this.advertisersService.advertiserHelperDataGenerator(body.advertiser)
     return await this.advertisersRepository
-       .createQueryBuilder()
-       .update(Advertisers)
-       .set(newAdvertiserData)
-       .where({id: id})
-       .execute()
-       .then(result => {
-         throw new HttpException('Advertiser edit', HttpStatus.OK);
-       })
+      .createQueryBuilder()
+      .update(Advertisers)
+      .set(newAdvertiserData)
+      .where({id: id})
+      .execute()
+      .then(result => {
+        throw new HttpException('Advertiser edit', HttpStatus.OK);
+      })
   }
 }

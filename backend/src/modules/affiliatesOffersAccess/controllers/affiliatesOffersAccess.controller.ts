@@ -1,4 +1,4 @@
-import {  Controller, Get, Post, Request } from '@nestjs/common';
+import {  Controller, Get, Param, Post, Request } from '@nestjs/common';
 import { Connection, Repository, getConnection} from 'typeorm';
 import { Affiliates } from '../../affiliates/entities/affiliates.entity';
 import { Offers } from '../../offers/entities/offers.entity';
@@ -14,14 +14,23 @@ export class AffiliatesOffersAccessController {
     this.affilOfferRepository = this.connection.getRepository(AffiliatesOffersAccess)
   }
 
-    @Post('/get-offers')   //get list offers by id affiiate
-    async findOffersById(@Request() req): Promise<Offers[] | []> {
-      return await this.affiliatesService.filterForAffiliateId(req.body.id)
+    @Get('/get-offers/:affiliateId')   //get list offers by id affiiate
+    async getOffersById(@Param('affiliateId') affiliateId: string): Promise<Offers[] | []> {
+      try {
+        return await this.affiliatesService.filterForAffiliateId(affiliateId)
+      } catch ($e) {
+        return [];
+      }
+
     }
 
-    @Post('/get-affiliates')  //get list off affiliates by id offer
-    async findAffiliatesById(@Request() req): Promise<Affiliates[] | []> {
-      return await this.affiliatesService.filterForOfferId(req.body.id)
+    @Get('/get-affiliates/:offerId')  //get list off affiliates by id offer
+    async getAffiliatesById(@Param('offerId') offerId: string): Promise<Affiliates[] | []> {
+      try {
+        return await this.affiliatesService.filterForOfferId(offerId)
+      } catch ($e) {
+        return [];
+      }
   }
   
   @Get('/all')

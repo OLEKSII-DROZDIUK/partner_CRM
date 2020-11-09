@@ -30,6 +30,7 @@ import IOffers from '@app/interfaces/Offers';
         };
     
     public ngOnInit() {
+        // console.log("affiliate: ", this.affiliate)
         this.initApiData()
     };
 

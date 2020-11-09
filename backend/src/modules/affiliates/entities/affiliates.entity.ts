@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { AffiliatesOffersAccess } from '../../affiliatesOffersAccess/entities/affiliatesOffersAccess.entity';
 import { User } from '../../users/entities/users.entity';
 
 enum AffiliatesStatus {
@@ -28,4 +29,7 @@ export class Affiliates {
 
   @ManyToOne(() => User, user => user.id)
   manager: User;
+
+  @OneToMany(() => AffiliatesOffersAccess, affiliatesOffersAccess => affiliatesOffersAccess.affiliate)
+  affiliatesOffersAccesses: AffiliatesOffersAccess[];
 }
