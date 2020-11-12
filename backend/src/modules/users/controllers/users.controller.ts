@@ -8,14 +8,14 @@ import { AdminGuard } from '../../auth/guards/admin.guards';
 @Controller('users')
 export class UsersController {
   constructor(
-    private userService: UsersService,
+    private readonly userService: UsersService,
   ) {
     this.userService.createAdmin();
   }
 
   @Get('/all')
   @UseGuards(AdminGuard)
-    async getAllUsers(): Promise<User[]> {
+    private async getAllUsers(): Promise<User[]> {
       return await this.userService.findAllUsers()
     }
   
@@ -23,14 +23,14 @@ export class UsersController {
   @Post('/create')
   @UseGuards(AdminGuard)
   @UsePipes(new ValidationPipe())
-    async createUser(@Body() body: UserDto): Promise<User> {
+    private async create(@Body() body: UserDto): Promise<User> {
       return await this.userService.create(body)
     }
   
   @Put('/update')
   @UseGuards(AdminGuard)
   @UsePipes(new ValidationPipe())
-  async updateUser(@Body() body: UserDto): Promise<User> {
-    return await this.userService.update(body)
-  }
+    private async update(@Body() body: UserDto): Promise<User> {
+      return await this.userService.update(body)
+    }
 }
