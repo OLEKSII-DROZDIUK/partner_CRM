@@ -1,6 +1,6 @@
 import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
-import { AdvertisersGuard } from '../../../guards/advertisers.guards ';
+import { AdvertisersGuard } from '../../auth/guards/advertisers.guards ';
 import { Offers } from '../entities/offers.entity';
 import { OffersService } from '../services/offers.service';
 

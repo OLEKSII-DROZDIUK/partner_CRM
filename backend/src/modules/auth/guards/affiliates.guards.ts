@@ -6,16 +6,14 @@ import {
   } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Connection, Repository } from 'typeorm';
-import { User } from '../modules/users/entities/users.entity';
-import { UsersService } from '../modules/users/services/users.service';
-  
+import { User } from '../../users/entities/users.entity';
+
   @Injectable()
-  export class AdminGuard {
+  export class AffiliatesGuard {
     private usersRepository: Repository<User>;
     constructor(
       private jwtService: JwtService,
       private connection: Connection,
-      private userService: UsersService,
     ) {
       this.usersRepository = this.connection.getRepository(User)
     }
@@ -27,7 +25,7 @@ import { UsersService } from '../modules/users/services/users.service';
 
       return await this.usersRepository.findOne(decodedjwt.id)
         .then(user => {
-          if(user.role === 'admin') return true
+          if(user.role === 'admin' || user.role === 'affiliateManager') return true
           throw new HttpException('Unauthorized access', HttpStatus.UNAUTHORIZED);
         })
       } catch(error) {

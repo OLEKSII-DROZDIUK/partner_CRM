@@ -6,7 +6,7 @@ import {
   } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Connection, Repository } from 'typeorm';
-import { User } from '../modules/users/entities/users.entity';
+import { User } from '../../users/entities/users.entity';
   
   @Injectable()
   export class AdvertisersGuard {

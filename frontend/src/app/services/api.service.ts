@@ -31,11 +31,11 @@ export class ApiService {
     }
 
     public editUser(user: IUser) {
-      return this.http.put(`${environment.apiUrl}/users/edit`, {headers: this.httpOptions.headers, user});
+      return this.http.put(`${environment.apiUrl}/users/update`, {headers: this.httpOptions.headers, ...user});
     }
 
     public createUser(user: IUser) {
-      return this.http.post(`${environment.apiUrl}/users/create`, {headers: this.httpOptions.headers, user});
+      return this.http.post(`${environment.apiUrl}/users/create`, {headers: this.httpOptions.headers, ...user});
     }
     //  category Advertisers
     public getAllAdvertisers() {

@@ -1,6 +1,6 @@
 import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
 import { Connection, Repository } from 'typeorm';
-import { AffiliatesGuard } from '../../../guards/affiliates.guards';
+import { AffiliatesGuard } from '../../auth/guards/affiliates.guards';
 import { Affiliates } from '../entities/affiliates.entity';
 import { AffiliatesService } from '../services/affiliates.service';
 
