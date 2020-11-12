@@ -1,17 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Advertisers } from '../../advertisers/entities/advertisers.entity';
 import { Affiliates } from '../../affiliates/entities/affiliates.entity';
-
-enum UserRole {
-  admin = 'admin',
-  advertiserManager  = 'advertiserManager',
-  affiliateManager = 'affiliateManager'
-}
-
-enum UserStatus {
-  active =  'active',
-  inactive = 'inactive'
-}
+import { UserRole } from './userRole.enum';
+import { UserStatus } from './userStatus.enum';
 
 @Entity()
 export class User {

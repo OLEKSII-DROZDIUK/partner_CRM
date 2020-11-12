@@ -6,10 +6,10 @@ import {
   } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Connection, Repository } from 'typeorm';
-import { User } from '../modules/users/entities/users.entity';
-  
+import { User } from '../../users/entities/users.entity';
+
   @Injectable()
-  export class AdvertisersGuard {
+  export class AffiliatesGuard {
     private usersRepository: Repository<User>;
     constructor(
       private jwtService: JwtService,
@@ -25,7 +25,7 @@ import { User } from '../modules/users/entities/users.entity';
 
       return await this.usersRepository.findOne(decodedjwt.id)
         .then(user => {
-          if(user.role === 'admin' || user.role === 'advertiserManager') return true
+          if(user.role === 'admin' || user.role === 'affiliateManager') return true
           throw new HttpException('Unauthorized access', HttpStatus.UNAUTHORIZED);
         })
       } catch(error) {

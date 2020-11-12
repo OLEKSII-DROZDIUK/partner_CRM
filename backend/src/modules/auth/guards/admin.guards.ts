@@ -5,13 +5,13 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../modules/users/services/users.service';
-  
+import { UsersService } from '../../users/services/users.service'
+
   @Injectable()
   export class AdminGuard {
     constructor(
-      private jwtService: JwtService,
-      private userService: UsersService,
+      private readonly jwtService: JwtService,
+      private readonly userService: UsersService,
     ) {}
   
     public async canActivate(context: ExecutionContext):Promise<boolean> {
@@ -19,7 +19,7 @@ import { UsersService } from '../modules/users/services/users.service';
         const token  = context.switchToHttp().getRequest().headers.authorization.slice(6)
         const decodedjwt = this.jwtService.verify(token)
         const userAdmin = await this.userService.findUserById(decodedjwt.id)
-        if(userAdmin.role === 'admin') return true
+        return userAdmin.role === 'admin'
       } catch(error) {
         throw new HttpException('Error when verify user', HttpStatus.BAD_REQUEST);
       }
