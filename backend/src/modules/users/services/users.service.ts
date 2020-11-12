@@ -24,18 +24,18 @@ export class UsersService {
 
     if(newData.password.length != 0) {
       return {
-        email:email,
+        email: email,
         name: name,
         password: this.generateHashPassword(newData.password),
-        role:role,
-        status:status
+        role: role,
+        status: status
       }
     } else {
       return {
-        email:email,
+        email: email,
         name: name,
-        role:role,
-        status:status
+        role: role,
+        status: status
       }
     }
 	}
@@ -78,9 +78,12 @@ export class UsersService {
       })
 	}
 	
-	public update(user:any) {
+	public async update(user:any) {
 		const newUserData = this.userHelperDataGenerator(user)  //and fail here when no password
 		try {
+      await this.usersRepository
+        .findOneOrFail({id: user.id});  // if no found its go to catch
+
 			return this.usersRepository
 				.save({...newUserData, id: user.id})
 		} catch(e) {
