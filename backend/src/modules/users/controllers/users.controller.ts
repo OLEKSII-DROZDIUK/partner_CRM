@@ -8,8 +8,7 @@ import { AdminGuard } from '../../auth/guards/admin.guards';
 @Controller('users')
 export class UsersController {
   constructor(
-    private readonly userService: UsersService,
-  ) {
+    private readonly userService: UsersService) {
     this.userService.createAdmin();
   }
 

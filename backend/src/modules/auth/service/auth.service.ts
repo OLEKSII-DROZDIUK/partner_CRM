@@ -1,5 +1,5 @@
 import { User } from '../../users/entities/users.entity';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ExecutionContext, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Connection, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -30,11 +30,11 @@ export class AuthService {
       role: role,
       type: process.env.JWT_TYPE_EC
     }
-    return { accessToken: this.jwtService.sign(payload,) }
+    return { accessToken: this.jwtService.sign(payload) }
   }
+
   // helpers start end
   public async checkUser(name: string, password: string) {
-    //admin lallaal2e
     return await this.userRepository.findOne({name})
       .then(user => {
         if(!user) return user  //incorrect data or not found customer in db
@@ -42,10 +42,16 @@ export class AuthService {
         if(isValid) {
           return this.generateAccessToken(user.id, user.role);
         }  else {  
-          throw new HttpException('Incorrect password', HttpStatus.UNAUTHORIZED);
+          throw new HttpException('Incorrect password', HttpStatus.FORBIDDEN);
         }
       })
   };
 
+  public findUser(context: ExecutionContext): Promise<User> {
+    const request = context.switchToHttp().getRequest()
+    const token: string = request.headers.authorization.slice(6)
+    const decodedjwt = this.jwtService.verify(token)
 
+    return this.userRepository.findOne(decodedjwt.id)
+	}
 }

@@ -7,7 +7,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    // AdminModule,
     PassportModule.register({defaultStrategy: 'jwt'}),
     ConfigModule,
     JwtModule.registerAsync({

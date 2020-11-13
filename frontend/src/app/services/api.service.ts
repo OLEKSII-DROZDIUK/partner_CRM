@@ -73,11 +73,11 @@ export class ApiService {
     }
 
     public editAffiliates(affiliate: IAffiliates) {
-      return this.http.put(`${environment.apiUrl}/affiliates/edit`, {headers: this.httpOptions.headers, affiliate});
+      return this.http.put(`${environment.apiUrl}/affiliates/update`, {headers: this.httpOptions.headers, ...affiliate});
     }
 
     public createAffiliates(affiliate: IAffiliates) {
-      return this.http.post(`${environment.apiUrl}/affiliates/create`, {headers: this.httpOptions.headers, affiliate});
+      return this.http.post(`${environment.apiUrl}/affiliates/create`, {headers: this.httpOptions.headers, ...affiliate});
     }
 
     // offer - affiliate
