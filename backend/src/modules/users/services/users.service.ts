@@ -6,18 +6,18 @@ import * as bcrypt from 'bcrypt';
 import { UserRole } from '../entities/userRole.enum';
 import { UserStatus } from '../entities/userStatus.enum';
 import { UserDto } from '../dto/user.dto';
-import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-    private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
   public generateHashPassword(pass: string) {
-    const salt = Number(process.env.BCRYPT_SALT);
+    const salt = Number(this.configService.get<string>('bcryptSalt'))
     const hashUserPass = bcrypt.hashSync(pass, bcrypt.genSaltSync(salt))
     return hashUserPass;
   };

@@ -1,4 +1,4 @@
-import { Body, Controller, UseGuards, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, UseGuards, Get, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AffiliatesGuard } from '../../auth/guards/affiliates.guards';
 import { AffiliateDto } from '../dto/affiliate.dto';
 import { Affiliates } from '../entities/affiliates.entity';
@@ -10,20 +10,22 @@ export class AffiliatesController {
     private readonly affiliatesService: AffiliatesService)  
   { }
 
-    @Get('/all')
-      private async getAll(): Promise<AffiliateDto[]> {
-        return await this.affiliatesService.findAllAffiliate()
-      }
-
+    @Get()
+    private async getAll(): Promise<AffiliateDto[]> {
+      return await this.affiliatesService.findAllAffiliate()
+    }
+  
+    @Post()
     @UseGuards(AffiliatesGuard)
-    @Post('/create')
-      async create(@Body() body: AffiliateDto): Promise<Affiliates> {
-        return await this.affiliatesService.create(body)
-      }
+    @UsePipes(new ValidationPipe())
+    private async create(@Body() body: AffiliateDto): Promise<Affiliates> {
+      return await this.affiliatesService.create(body)
+    }
 
-    @UseGuards(AffiliatesGuard)
     @Put('/update')
-      private async update(@Body() body: AffiliateDto): Promise<Affiliates> {
-        return await this.affiliatesService.update(body)
-      }
+    @UseGuards(AffiliatesGuard)
+    @UsePipes(new ValidationPipe())
+    private async update(@Body() body: AffiliateDto): Promise<Affiliates> {
+      return await this.affiliatesService.update(body)
+    }
 }

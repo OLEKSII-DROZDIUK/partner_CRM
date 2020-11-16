@@ -27,7 +27,7 @@ export class ApiService {
     };
     // user category
     public getAllUsers() {
-      return this.http.get(`${environment.apiUrl}/users/all`, {headers: this.httpOptions.headers});
+      return this.http.get(`${environment.apiUrl}/users`, {headers: this.httpOptions.headers});
     }
 
     public editUser(user: IUser) {
@@ -35,7 +35,7 @@ export class ApiService {
     }
 
     public createUser(user: IUser) {
-      return this.http.post(`${environment.apiUrl}/users/create`, {headers: this.httpOptions.headers, ...user});
+      return this.http.post(`${environment.apiUrl}/users`, {headers: this.httpOptions.headers, ...user});
     }
     //  category Advertisers
     public getAllAdvertisers() {
@@ -69,7 +69,7 @@ export class ApiService {
 
     //category Affilites
     public getAllAffiliates() {
-      return this.http.get(`${environment.apiUrl}/affiliates/all`, {headers: this.httpOptions.headers});
+      return this.http.get(`${environment.apiUrl}/affiliates`, {headers: this.httpOptions.headers});
     }
 
     public editAffiliates(affiliate: IAffiliates) {
@@ -77,7 +77,7 @@ export class ApiService {
     }
 
     public createAffiliates(affiliate: IAffiliates) {
-      return this.http.post(`${environment.apiUrl}/affiliates/create`, {headers: this.httpOptions.headers, ...affiliate});
+      return this.http.post(`${environment.apiUrl}/affiliates`, {headers: this.httpOptions.headers, ...affiliate});
     }
 
     // offer - affiliate

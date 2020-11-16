@@ -50,11 +50,10 @@ export class AffiliatesService {
 				newAffiliate.managerId = managerId;
 				newAffiliate.email = email;
 				newAffiliate.status = status;
-
 			try {
 				return this.affiliatesRepository.save(newAffiliate)
 			} catch(e) {
-				throw new HttpException('Server error, can create affiliate', HttpStatus.INTERNAL_SERVER_ERROR);
+				throw new HttpException('Server error, can`t create affiliate', HttpStatus.INTERNAL_SERVER_ERROR);
 			}
     }
     
