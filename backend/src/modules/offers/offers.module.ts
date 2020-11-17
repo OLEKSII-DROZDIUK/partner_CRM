@@ -5,6 +5,7 @@ import { Offers } from './entities/offers.entity';
 import { OffersService } from './services/offers.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthService } from '../auth/service/auth.service';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     })
   ],
   controllers: [OffersController],
-  providers: [OffersService],
+  providers: [OffersService,  AuthService],
 })
 export class OffersModule {}

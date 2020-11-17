@@ -8,19 +8,18 @@ import { AdminGuard } from '../../auth/guards/admin.guards';
 @Controller('users')
 export class UsersController {
   constructor(
-    private readonly userService: UsersService,
-  ) {
+    private readonly userService: UsersService) {
     this.userService.createAdmin();
   }
 
-  @Get('/all')
+  @Get()
   @UseGuards(AdminGuard)
     private async getAllUsers(): Promise<User[]> {
       return await this.userService.findAllUsers()
     }
   
   @HttpCode(201)
-  @Post('/create')
+  @Post()
   @UseGuards(AdminGuard)
   @UsePipes(new ValidationPipe())
     private async create(@Body() body: UserDto): Promise<User> {

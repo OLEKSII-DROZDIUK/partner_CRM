@@ -1,50 +1,31 @@
-import { Body, Controller, UseGuards, Get, Post, Put, HttpException, HttpStatus } from '@nestjs/common';
-import { Connection, Repository } from 'typeorm';
+import { Body, Controller, UseGuards, Get, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AffiliatesGuard } from '../../auth/guards/affiliates.guards';
+import { AffiliateDto } from '../dto/affiliate.dto';
 import { Affiliates } from '../entities/affiliates.entity';
 import { AffiliatesService } from '../services/affiliates.service';
 
 @Controller('affiliates')
 export class AffiliatesController {
-  private affiliatesRepository: Repository<Affiliates>;
+  constructor(
+    private readonly affiliatesService: AffiliatesService)  
+  { }
 
-  constructor(private readonly affiliatesService: AffiliatesService,
-    private connection: Connection,)  {
-    this.affiliatesRepository = this.connection.getRepository(Affiliates)
-  }
-
-    @Get('/all')
-      async getAllAffiliates(): Promise<any | null> {
-        return await this.affiliatesService.editAffiliatesArrForUI()
-      }
-
+    @Get()
+    private async getAll(): Promise<AffiliateDto[]> {
+      return await this.affiliatesService.findAllAffiliate()
+    }
+  
+    @Post()
     @UseGuards(AffiliatesGuard)
-    @Post('/create')
-      async createAdvertiser(@Body() body: any): Promise<Affiliates> {
-      const { id, company, managerId, email, name, status } = body.affiliate;
-      const newAffiliate= new Affiliates ();
-          newAffiliate.id = id;
-          newAffiliate.name = name;
-          newAffiliate.company = company;
-          newAffiliate.managerId = managerId;
-          newAffiliate.email = email;
-          newAffiliate.status = status;
-        return await this.affiliatesRepository.save(newAffiliate)
-      }
+    @UsePipes(new ValidationPipe())
+    private async create(@Body() body: AffiliateDto): Promise<Affiliates> {
+      return await this.affiliatesService.create(body)
+    }
 
+    @Put('/update')
     @UseGuards(AffiliatesGuard)
-    @Put('/edit')
-    async EditAdvertiser(@Body() body: any): Promise<Affiliates> {
-    const { id } = body.affiliate;
-    const newAffiliateData = await this.affiliatesService.affiliatesHelperDataGenerator(body.affiliate)
-    return await this.affiliatesRepository
-      .createQueryBuilder()
-      .update(Affiliates)
-      .set(newAffiliateData)
-      .where({id: id})
-      .execute()
-      .then(result => {
-        throw new HttpException('Affiliate edit', HttpStatus.OK);
-      })
+    @UsePipes(new ValidationPipe())
+    private async update(@Body() body: AffiliateDto): Promise<Affiliates> {
+      return await this.affiliatesService.update(body)
     }
 }

@@ -1,11 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { AffiliatesOffersAccess } from '../../affiliatesOffersAccess/entities/affiliatesOffersAccess.entity';
 import { User } from '../../users/entities/users.entity';
-
-enum AffiliatesStatus {
-  active =  'active',
-  inactive = 'inactive'
-}
+import { AffiliatesStatus } from './affiliateStatus.enum';
 
 @Entity()
 export class Affiliates {
